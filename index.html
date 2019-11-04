@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script>
+	function showmessage(){
+
+var xhr=new XMLHttpRequest();
+	xhr.open("GET","reciever.php?t="+new Date().getTime(),true);//
+	xhr.send();
+	xhr.onreadystatechange = function(){
+			if(xhr.readyState==4){
+			document.getElementById('div1').innerHTML = "";
+			
+			
+			str = JSON.parse(xhr.responseText);
+			console.log(str.length);
+			
+			var i=0;
+			for(i;i<str.length;i++)
+			{
+			document.getElementById('div1').innerHTML += str[i].receiver+"说："+str[i].con+"<br>";
+			}
+			
+			
+			}
+			
+			
+			}
+			
+			
+	}
+showmessage();	
+window.onload = function(){
+		setInterval("showmessage()",2000);
+}
+
+
+	</script>
+	
+
+
+<meta charset="UTF-8">
+	<title></title>
+	<style>
+	#button1{
+	background:skyblue;
+	border-radius:20px;
+	width:100px;
+	}
+	#input1,#input2{
+	border-radius:20px;
+	}
+	</style>
+	
+	
+	
+</head>
+<body>
+
+名字：<input id="input1"><br>
+内容：<input id="input2" placeholder="请输入你要填写的内容"><br>
+<button id="button1">发送</button>
+<div id="div1"></div>
+
+</body>
+<script type="text/javascript">
+
+
+
+
+
+document.getElementById("button1").onclick=function(){
+		
+		var div1 = document.getElementById("div1");
+		
+		var inp1=document.getElementById("input1");
+		var inp2=document.getElementById("input2");
+		var username = inp1.value;
+		var con = inp2.value;
+		
+		var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4) {
+               
+            }
+        }
+       xhr.open("GET","send.php?username="+username+"&con="+con,true);
+		
+        xhr.send();
+		
+}
+
+
+
+</script>
+</html>
