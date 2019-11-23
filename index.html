@@ -2,6 +2,9 @@
 
 <html>
 <head>
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
 <script>
 	function showmessage(){
 
@@ -14,12 +17,12 @@ var xhr=new XMLHttpRequest();
 			
 			
 			str = JSON.parse(xhr.responseText);
-			console.log(str.length);
+			// console.log(str.length);
 			
 			var i=0;
 			for(i;i<str.length;i++)
 			{
-			document.getElementById('div1').innerHTML += str[i].receiver+"说："+str[i].con+"<br>";
+			document.getElementById('div1').innerHTML += "<span class='badge'>"+ str[i].receiver+"："+"</span>"+"<span id='input-size'>"+str[i].con+"</span>"+"<br><br>";
 			}
 			
 			
@@ -32,7 +35,7 @@ var xhr=new XMLHttpRequest();
 	}
 showmessage();	
 window.onload = function(){
-		setInterval("showmessage()",2000);
+		setInterval("showmessage()",1000);
 }
 
 
@@ -43,14 +46,20 @@ window.onload = function(){
 <meta charset="UTF-8">
 	<title></title>
 	<style>
-	#button1{
-	background:skyblue;
-	border-radius:20px;
-	width:100px;
-	}
 	#input1,#input2{
 	border-radius:20px;
 	}
+
+	#div1{
+		border: 2px black solid;
+		background: skyblue;
+	}
+
+	#input-size{
+		background: red;
+		border-radius:20px;
+	}
+
 	</style>
 	
 	
@@ -58,10 +67,24 @@ window.onload = function(){
 </head>
 <body>
 
-名字：<input id="input1"><br>
-内容：<input id="input2" placeholder="请输入你要填写的内容"><br>
-<button id="button1">发送</button>
+
+
+
+
 <div id="div1"></div>
+
+
+<div class="form-group">
+		<span class="glyphicon glyphicon-user"></span>
+		<label for="">你的名字：</label>
+		<input type="text" class="form-control" id="input1">
+		<span class="glyphicon glyphicon-thumbs-up"></span>
+		<label for="">评论内容：</label>
+		<input type="text" class="form-control" id="input2">
+	</div>
+	<div class="form-group">
+			<button id="button1" class="btn btn-primary">发送信息</button>
+	</div>
 
 </body>
 <script type="text/javascript">
