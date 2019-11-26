@@ -1,0 +1,29 @@
+#input1,#input2{
+	border-radius:20px;
+	}
+
+	#div1{
+		border: 2px black solid;
+		background:#87ceeb;
+		height: 300px;
+		overflow:auto;
+	}
+
+	#input-size{
+		background: red;
+		border-radius:20px;
+	}
+
+	.v-enter,
+		.v-leave-to {
+			opacity: 0;
+
+			transform: rotateY(120deg);
+
+
+		}
+
+		.v-enter-active,
+		.v-leave-active {
+			transition: all 1s ease;
+		}

@@ -2,67 +2,12 @@
 
 <html>
 <head>
-	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-
-<script>
-	function showmessage(){
-
-var xhr=new XMLHttpRequest();
-	xhr.open("GET","reciever.php?t="+new Date().getTime(),true);//
-	xhr.send();
-	xhr.onreadystatechange = function(){
-			if(xhr.readyState==4){
-			document.getElementById('div1').innerHTML = "";
-			
-			
-			str = JSON.parse(xhr.responseText);
-			// console.log(str.length);
-			
-			var i=0;
-			for(i;i<str.length;i++)
-			{
-			document.getElementById('div1').innerHTML += "<span class='badge'>"+ str[i].receiver+"："+"</span>"+"<span id='input-size'>"+str[i].con+"</span>"+"<br><br>";
-			}
-			
-			
-			}
-			
-			
-			}
-			
-			
-	}
-showmessage();	
-window.onload = function(){
-		setInterval("showmessage()",1000);
-}
-
-
-	</script>
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/kjh.css?t={{time()}}" rel="stylesheet">
 	
-
-
 <meta charset="UTF-8">
-	<title></title>
-	<style>
-	#input1,#input2{
-	border-radius:20px;
-	}
-
-	#div1{
-		border: 2px black solid;
-		background: skyblue;
-	}
-
-	#input-size{
-		background: red;
-		border-radius:20px;
-	}
-
-	</style>
-	
-	
+	<title>Ajax聊天室</title>
 	
 </head>
 <body>
@@ -71,50 +16,32 @@ window.onload = function(){
 
 
 
-<div id="div1"></div>
+
+
+<div id="app">
+		<div id="div1">	</div>
+
 
 
 <div class="form-group">
 		<span class="glyphicon glyphicon-user"></span>
 		<label for="">你的名字：</label>
-		<input type="text" class="form-control" id="input1">
+		<input type="text" class="form-control" id="input1" >
 		<span class="glyphicon glyphicon-thumbs-up"></span>
 		<label for="">评论内容：</label>
-		<input type="text" class="form-control" id="input2">
+		<input type="text" class="form-control" id="input2" @keyup.enter = bbb>
 	</div>
 	<div class="form-group">
-			<button id="button1" class="btn btn-primary">发送信息</button>
+			<button id="button1" class="btn btn-primary"  >发送信息</button>
 	</div>
+	
+</div>
 
 </body>
-<script type="text/javascript">
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/vue.js"></script>
 
+<script src="js/kjh.js?t=5"></script>
 
-
-
-document.getElementById("button1").onclick=function(){
-		
-		var div1 = document.getElementById("div1");
-		
-		var inp1=document.getElementById("input1");
-		var inp2=document.getElementById("input2");
-		var username = inp1.value;
-		var con = inp2.value;
-		
-		var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function(){
-            if(xhr.readyState==4) {
-               
-            }
-        }
-       xhr.open("GET","send.php?username="+username+"&con="+con,true);
-		
-        xhr.send();
-		
-}
-
-
-
-</script>
 </html>
